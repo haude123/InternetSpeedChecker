@@ -24,21 +24,21 @@ lab_title.place(x=100, y=30, height=50, width=400)
 
 # Ping speed label
 lab_ping_text = Label(sp, text="Ping", font=("Arial", 20, "bold"), bg="#87CEEB")
-lab_ping_text.place(x=100, y=120, height=50, width=150)
+lab_ping_text.place(x=60, y=120, height=50, width=150)
 
 lab_ping = Label(sp, text="0 ms", font=("Arial", 20), bg="#FFFFFF", relief="solid")
 lab_ping.place(x=300, y=120, height=50, width=200)
 
 # Download speed label
 lab_down_text = Label(sp, text="Download Speed", font=("Arial", 20, "bold"), bg="#87CEEB")
-lab_down_text.place(x=100, y=200, height=50, width=250)
+lab_down_text.place(x=60, y=200, height=50, width=250)
 
 lab_down = Label(sp, text="0 Mbps", font=("Arial", 20), bg="#FFFFFF", relief="solid")
 lab_down.place(x=300, y=200, height=50, width=200)
 
 # Upload speed label
 lab_up_text = Label(sp, text="Upload Speed", font=("Arial", 20, "bold"), bg="#87CEEB")
-lab_up_text.place(x=100, y=280, height=50, width=250)
+lab_up_text.place(x=60, y=280, height=50, width=250)
 
 lab_up = Label(sp, text="0 Mbps", font=("Arial", 20), bg="#FFFFFF", relief="solid")
 lab_up.place(x=300, y=280, height=50, width=200)
