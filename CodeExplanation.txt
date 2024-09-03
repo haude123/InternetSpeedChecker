@@ -1,0 +1,103 @@
+Internet Speed Tester
+A simple Python application to measure internet speed, including download speed, upload speed, and ping, using the speedtest-cli library and Tkinter for the graphical user interface (GUI).
+Code Explanation
+Import Libraries:
+from tkinter import *
+import speedtest
+*  from tkinter import *: Imports all classes, functions, and variables from the Tkinter module, used for creating the graphical user interface (GUI).
+*  import speedtest: Imports the speedtest module, which allows interaction with Speedtest servers to measure internet speed.
+Define the speedcheck Function
+	def speedcheck():
+    sp = speedtest.Speedtest()
+    sp.get_servers()
+    down = str(round(sp.download() / (10 ** 6), 3)) + " Mbps"
+    up = str(round(sp.upload() / (10 ** 6), 3)) + " Mbps"
+    ping = str(round(sp.results.ping, 2)) + " ms"
+    
+    lab_down.config(text=down)
+    lab_up.config(text=up)
+    lab_ping.config(text=ping)
+*  def speedcheck():: Defines the speedcheck function, which performs the speed test and updates the GUI with the results.
+*  sp = speedtest.Speedtest(): Creates an instance of the Speedtest class.
+*  sp.get_servers(): Retrieves a list of available Speedtest servers.
+*  down = str(round(sp.download() / (10 ** 6), 3)) + " Mbps":
+* sp.download(): Measures the download speed in bits per second.
+* sp.download() / (10 ** 6): Converts the result to megabits per second (Mbps).
+* round(..., 3): Rounds the result to three decimal places.
+* str(...) + " Mbps": Converts the value to a string and appends " Mbps".
+*  up = str(round(sp.upload() / (10 ** 6), 3)) + " Mbps": Similar to the download speed calculation but for upload speed.
+*  ping = str(round(sp.results.ping, 2)) + " ms":
+* sp.results.ping: Retrieves the ping time in milliseconds.
+* round(..., 2): Rounds the ping time to two decimal places.
+* str(...) + " ms": Converts the value to a string and appends " ms".
+*  lab_down.config(text=down): Updates the lab_down label with the calculated download speed.
+*  lab_up.config(text=up): Updates the lab_up label with the calculated upload speed.
+*  lab_ping.config(text=ping): Updates the lab_ping label with the calculated ping time.
+
+Create the Main Window
+	sp = Tk()
+sp.title("Internet Speed Tester")
+sp.geometry("600x700")
+sp.config(bg="#87CEEB")
+*  sp = Tk(): Creates the main application window.
+*  sp.title("Internet Speed Tester"): Sets the window title to "Internet Speed Tester".
+*  sp.geometry("600x700"): Sets the window size to 600 pixels wide by 700 pixels tall.
+*  sp.config(bg="#87CEEB"): Sets the background color of the window to light blue (#87CEEB).
+Create the Title Label
+lab_title = Label(sp, text="Internet Speed Test", font=("Arial", 30, "bold"), bg="#87CEEB", fg="#FF4500")
+lab_title.place(x=100, y=30, height=50, width=400)
+*  lab_title = Label(...): Creates a label widget with the specified text, font, background color, and text color.
+*  text="Internet Speed Test": The text displayed on the label.
+*  font=("Arial", 30, "bold"): Sets the font to Arial, size 30, and bold.
+*  bg="#87CEEB": Sets the background color to light blue.
+*  fg="#FF4500": Sets the text color to orange-red.
+*  lab_title.place(...): Positions the label at (x=100, y=30) and sets its dimensions to 50 pixels high and 400 pixels wide.
+Create the Ping Labels
+	lab_ping_text = Label(sp, text="Ping", font=("Arial", 20, "bold"), bg="#87CEEB")
+lab_ping_text.place(x=100, y=120, height=50, width=150)
+lab_ping = Label(sp, text="0 ms", font=("Arial", 20), bg="#FFFFFF", relief="solid")
+lab_ping.place(x=300, y=120, height=50, width=200)
+*  lab_ping_text = Label(...): Creates a label to display the text "Ping".
+*  lab_ping_text.place(...): Positions the ping text label at (x=100, y=120) with dimensions 50x150 pixels.
+*  lab_ping = Label(...): Creates a label to display the ping result, initially set to "0 ms".
+*  bg="#FFFFFF": Sets the background color to white.
+*  relief="solid": Adds a solid border around the label.
+*  lab_ping.place(...): Positions the ping result label at (x=300, y=120) with dimensions 50x200 pixels.
+
+Create the Download Speed Labels
+	lab_down_text = Label(sp, text="Download Speed", font=("Arial", 20, "bold"), bg="#87CEEB")
+lab_down_text.place(x=100, y=200, height=50, width=250)
+lab_down = Label(sp, text="0 Mbps", font=("Arial", 20), bg="#FFFFFF", relief="solid")
+lab_down.place(x=300, y=200, height=50, width=200)
+*  lab_down_text = Label(...): Creates a label to display the text "Download Speed".
+*  lab_down_text.place(...): Positions the download speed text label at (x=100, y=200) with dimensions 50x250 pixels.
+*  lab_down = Label(...): Creates a label to display the download speed result, initially set to "0 Mbps".
+*  bg="#FFFFFF": Sets the background color to white.
+*  relief="solid": Adds a solid border around the label.
+*  lab_down.place(...): Positions the download speed result label at (x=300, y=200) with dimensions 50x200 pixels.
+
+Create the Upload Speed Labels
+	lab_up_text = Label(sp, text="Upload Speed", font=("Arial", 20, "bold"), bg="#87CEEB")
+lab_up_text.place(x=100, y=280, height=50, width=250)
+lab_up = Label(sp, text="0 Mbps", font=("Arial", 20), bg="#FFFFFF", relief="solid")
+lab_up.place(x=300, y=280, height=50, width=200)
+*  lab_up_text = Label(...): Creates a label to display the text "Upload Speed".
+*  lab_up_text.place(...): Positions the upload speed text label at (x=100, y=280) with dimensions 50x250 pixels.
+*  lab_up = Label(...): Creates a label to display the upload speed result, initially set to "0 Mbps".
+*  bg="#FFFFFF": Sets the background color to white.
+*  relief="solid": Adds a solid border around the label.
+*  lab_up.place(...): Positions the upload speed result label at (x=300, y=280) with dimensions 50x200 pixels.
+Create the "Check Speed" Button
+	button = Button(sp, text="Check Speed", font=("Arial", 20, "bold"), bg="#32CD32", fg="#FFFFFF", command=speedcheck)
+       button.place(x=150, y=400, height=60, width=300)
+*  button = Button(...): Creates a button widget that, when clicked, will execute the speedcheck function.
+*  text="Check Speed": The text displayed on the button.
+*  font=("Arial", 20, "bold"): Sets the font to Arial, size 20, and bold.
+*  bg="#32CD32": Sets the background color of the button to green.
+*  fg="#FFFFFF": Sets the text color of the button to white.
+*  command=speedcheck: Specifies that the speedcheck function should be called when the button is clicked.
+*  button.place(...): Positions the button at (x=150, y=400) with dimensions 60x300 pixels.
+
+Start the Tkinter Main Loop
+	sp.mainloop()
+sp.mainloop(): Starts the Tkinter main event loop, which waits for user interactions and updates the GUI accordingly.
